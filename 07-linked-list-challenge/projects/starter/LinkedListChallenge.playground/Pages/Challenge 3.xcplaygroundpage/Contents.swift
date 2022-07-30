@@ -8,9 +8,21 @@
  */
 extension LinkedList {
     
-  mutating func reverse() {
+    mutating func reverse() {
+        tail = head
+        var prev = head
+        var current = head?.next
+        prev?.next = nil
+        
+        while current != nil {
+            let next = current?.next
+            
+            current?.next = prev
+            prev = current
+            current = next
+        }
+    }
     
-  }
 }
 
 
