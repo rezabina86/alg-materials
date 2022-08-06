@@ -47,5 +47,7 @@ let seven = TreeNode(7)
 twenty.add(five2)
 twenty.add(seven)
 
+print(tree)
+
 // Your solution here
 
