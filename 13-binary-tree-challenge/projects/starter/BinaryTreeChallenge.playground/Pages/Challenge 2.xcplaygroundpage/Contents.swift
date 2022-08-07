@@ -25,24 +25,25 @@
 
 var tree: BinaryNode<Int> = {
   
-  let root = BinaryNode(value: 15)
-  let ten = BinaryNode(value: 10)
+  let root = BinaryNode(value: 1)
+  let two = BinaryNode(value: 2)
+  let three = BinaryNode(value: 3)
+  let four = BinaryNode(value: 4)
   let five = BinaryNode(value: 5)
-  let twelve = BinaryNode(value: 12)
-  let twentyFive = BinaryNode(value: 25)
-  let seventeen = BinaryNode(value: 17)
   
-  root.leftChild = ten
-  root.rightChild = twentyFive
-  ten.leftChild = five
-  ten.rightChild = twelve
-  twentyFive.leftChild = seventeen
+  root.leftChild = two
+  root.rightChild = three
+  three.leftChild = four
+  three.rightChild = five
   
   return root
 }()
 
 print(tree)
-
+var arr = tree.serialize()
+print(arr)
+let newTree = BinaryNode<Int>.deserialize(&arr)
+print(newTree!)
 // Your code here
 
 /*
