@@ -14,7 +14,26 @@
  ```
  
  */
+func binarySearch<Elements: RandomAccessCollection>(for element: Elements.Element,
+                                                    in collection: Elements,
+                                                    in range: Range<Elements.Index>? = nil) -> Elements.Index? where Elements.Element: Comparable
+{
+    let range = range ?? collection.startIndex..<collection.endIndex
+    guard range.lowerBound < range.upperBound else {
+        return nil
+    }
+    
+    let size = collection.distance(from: range.lowerBound, to: range.upperBound)
+    let middleIndex = collection.index(range.lowerBound, offsetBy: size / 2)
 
+    if collection[middleIndex] == element {
+        return middleIndex
+    } else if collection[middleIndex] > element {
+        return binarySearch(for: element, in: collection, in: range.lowerBound..<middleIndex)
+    } else {
+        return binarySearch(for:element, in: collection, in: collection.index(after: middleIndex)..<range.upperBound)
+    }
+}
 /*:
  [Next Challenge](@next)
  */
