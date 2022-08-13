@@ -23,7 +23,15 @@ bst2.insert(1)
 bst2.insert(0)
 bst2.insert(4)
 
+var bst3 = BinarySearchTree<Int>()
+bst3.insert(2)
+bst3.insert(5)
+bst3.insert(3)
+bst3.insert(1)
+bst3.insert(0)
+bst3.insert(4)
+
 // Are bst1 and bst2 equal?
 // Your solution here
-
+print(bst3 == bst2)
 //: [Next Challenge](@next)

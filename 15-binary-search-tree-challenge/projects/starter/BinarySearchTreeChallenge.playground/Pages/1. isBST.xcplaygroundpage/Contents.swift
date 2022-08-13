@@ -18,5 +18,6 @@ print(bst)
 
 // Your solution here
 
+print(bst.root?.isBST)
 //: [Next Challenge](@next)
 

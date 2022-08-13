@@ -7,6 +7,10 @@ public class BinaryNode<Element> {
     public var leftChild: BinaryNode?
     public var rightChild: BinaryNode?
     
+    var min: BinaryNode {
+        leftChild?.min ?? self
+    }
+    
     public init(value: Element) {
         self.value = value
     }

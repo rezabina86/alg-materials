@@ -90,3 +90,10 @@ extension BinarySearchTree {
     return node
   }
 }
+
+extension BinarySearchTree: Equatable {
+    public static func ==(lhs: BinarySearchTree, rhs: BinarySearchTree) -> Bool {
+        lhs.root == rhs.root
+    }
+}
+

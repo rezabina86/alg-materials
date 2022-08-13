@@ -11,7 +11,5 @@ tree.insert(56)
 
 print(tree)
 
-
-tree.root?.traverseInOrderReverse(visit: { e in
-    print(e)
-})
+tree.remove(806)
+print(tree)
