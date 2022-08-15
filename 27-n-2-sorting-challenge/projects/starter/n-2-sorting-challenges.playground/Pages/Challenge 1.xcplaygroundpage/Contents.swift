@@ -9,7 +9,28 @@
 
 var array = [3, 4, 134, 3, 5, 6, 3, 5, 6, 1, 0]
 
-//array.rightAlign(value: 3)
+extension MutableCollection where Element: Comparable {
+    
+    public mutating func rightAlign(value: Element) {
+        guard self.count > 1 else { return }
+        for currentIndex in self.indices {
+            if self[currentIndex] == value {
+                
+                var shifting = currentIndex
+                var nextIndex = self.index(after: shifting)
+                
+                while nextIndex < self.endIndex {
+                    self.swapAt(shifting, nextIndex)
+                    shifting = self.index(after: shifting)
+                    nextIndex = self.index(after: nextIndex)
+                }
+            }
+        }
+    }
+    
+}
+
+array.rightAlign(value: 3)
 print(array)
 
 //: [Next Challenge](@next)
