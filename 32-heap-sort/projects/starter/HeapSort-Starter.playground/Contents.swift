@@ -122,3 +122,24 @@ struct Heap<Element: Equatable> {
     return nil
   }
 }
+
+extension Heap {
+    public func sorted() -> [Element] {
+        var heap = Heap(sort: sort, elements: elements)
+        var currentIndex = heap.elements.index(before: heap.elements.endIndex)
+        
+        while currentIndex > heap.elements.startIndex {
+            heap.elements.swapAt(0, currentIndex)
+            heap.siftDown(from: 0, upTo: currentIndex)
+            
+            currentIndex = heap.elements.index(before: currentIndex)
+        }
+        
+        return heap.elements
+    }
+}
+
+
+let arr = [6,12,2,26,8,18,21,9,5]
+let heap = Heap(sort: >, elements: arr)
+print(heap.sorted())
