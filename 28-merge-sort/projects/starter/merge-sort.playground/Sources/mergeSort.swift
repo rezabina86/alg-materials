@@ -1,7 +1,8 @@
 import Foundation
 
 public func merge<Element: Comparable>(_ left: [Element],
-                                       _ right: [Element]) -> [Element]
+                                       _ right: [Element],
+                                       by isInIncreasingOrder: (Element, Element) -> Bool) -> [Element]
 {
     
     var leftIndex = left.startIndex
@@ -13,10 +14,10 @@ public func merge<Element: Comparable>(_ left: [Element],
         let leftElement = left[leftIndex]
         let rightElement = right[rightIndex]
         
-        if leftElement < rightElement {
+        if isInIncreasingOrder(leftElement, rightElement) {
             finalResult.append(leftElement)
             leftIndex = left.index(after: leftIndex)
-        } else if leftElement > rightElement {
+        } else if isInIncreasingOrder(rightElement, leftElement) {
             finalResult.append(rightElement)
             rightIndex = right.index(after: rightIndex)
         } else {
@@ -38,7 +39,9 @@ public func merge<Element: Comparable>(_ left: [Element],
     return finalResult
 }
 
-public func mergeSort<Element: Comparable>(_ arr: [Element]) -> [Element] {
+public func mergeSort<Element: Comparable>(_ arr: [Element],
+                                           by isInIncreasingOrder: (Element, Element) -> Bool) -> [Element]
+{
     
     guard arr.count > 1 else {
         return arr
@@ -50,9 +53,9 @@ public func mergeSort<Element: Comparable>(_ arr: [Element]) -> [Element] {
     let left = Array(arr[arr.startIndex..<middleIndex])
     let right = Array(arr[middleIndex..<arr.endIndex])
     
-    let sortedLeft = mergeSort(left)
-    let sortedRight = mergeSort(right)
+    let sortedLeft = mergeSort(left, by: isInIncreasingOrder)
+    let sortedRight = mergeSort(right, by: isInIncreasingOrder)
     
-    return merge(sortedLeft, sortedRight)
+    return merge(sortedLeft, sortedRight, by: isInIncreasingOrder)
     
 }
