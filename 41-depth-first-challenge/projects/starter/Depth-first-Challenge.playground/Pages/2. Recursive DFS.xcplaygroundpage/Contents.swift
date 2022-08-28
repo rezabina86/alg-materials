@@ -9,18 +9,32 @@
  */
 
 extension Graph where Element: Hashable {
-  
-  func depthFirstSearch(from source: Vertex<Element>)
-    -> [Vertex<Element>] {
-      var visited: [Vertex<Element>] = []
-      var pushed: Set<Vertex<Element>> = []
-
-      // Add your code here
-      
-      return visited
-  }
-  
-
+    
+    func depthFirstSearch(from source: Vertex<Element>) -> [Vertex<Element>]
+    {
+        var visited: [Vertex<Element>] = []
+        var pushed: Set<Vertex<Element>> = []
+        dfs(from: source, visited: &visited, pushed: &pushed)
+        return visited
+    }
+    
+    func dfs(from source: Vertex<Element>,
+             visited: inout [Vertex<Element>],
+             pushed: inout Set<Vertex<Element>>)
+    {
+        visited.append(source)
+        pushed.insert(source)
+        
+        let neighbors = edges(from: source)
+        
+        for edge in neighbors {
+            if !pushed.contains(edge.destination) {
+                dfs(from: edge.destination, visited: &visited, pushed: &pushed)
+            }
+        }
+        
+    }
+    
 }
 
 //: ![sampleGraph](sampleGraph.png)
@@ -47,7 +61,7 @@ graph.add(.undirected, from: f, to: c, weight: nil)
 
 let vertices = graph.depthFirstSearch(from: a)
 vertices.forEach { vertex in
-  print(vertex)
+    print(vertex)
 }
 
 //: [Next Challenge](@next)
