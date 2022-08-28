@@ -3,6 +3,40 @@
 
 //: ![sampleGraph](sampleGraph.png)
 
+public extension Graph where Element: Hashable {
+    
+    func depthFirstSearch(from source: Vertex<Element>) -> [Vertex<Element>] {
+        var stack: Stack<Vertex<Element>> = []
+        var pushed: Set<Vertex<Element>> = []
+        var visited: [Vertex<Element>] = []
+        
+        stack.push(source)
+        pushed.insert(source)
+        visited.append(source)
+        
+        
+    outer: while let vertex = stack.peek() {
+        let neighbors = edges(from: vertex)
+        guard !neighbors.isEmpty else {
+            stack.pop()
+            continue
+        }
+        for edge in neighbors {
+            if !pushed.contains(edge.destination) {
+                stack.push(edge.destination)
+                pushed.insert(edge.destination)
+                visited.append(edge.destination)
+                continue outer
+            }
+        }
+        stack.pop()
+    }
+        
+        return visited
+    }
+    
+}
+
 let graph = AdjacencyList<String>()
 let a = graph.createVertex(data: "A")
 let b = graph.createVertex(data: "B")
@@ -22,3 +56,8 @@ graph.add(.undirected, from: e, to: f, weight: nil)
 graph.add(.undirected, from: e, to: h, weight: nil)
 graph.add(.undirected, from: f, to: g, weight: nil)
 graph.add(.undirected, from: f, to: c, weight: nil)
+
+let v = graph.depthFirstSearch(from: a)
+for vertex in v {
+    print(vertex)
+}
