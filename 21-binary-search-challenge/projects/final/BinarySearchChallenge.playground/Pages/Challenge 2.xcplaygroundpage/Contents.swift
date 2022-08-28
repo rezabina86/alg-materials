@@ -87,8 +87,8 @@ func endIndex(of value: Int, in array: [Int], range: CountableRange<Int>) -> Int
   }
 }
 
-let array = [1, 2, 3, 3, 3, 4, 5, 5]
-if let indices = findIndices(of: 3, in: array) {
+let array = [2,2]
+if let indices = findIndices(of: 2, in: array) {
   print(indices)
 }
 
