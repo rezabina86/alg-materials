@@ -45,11 +45,11 @@ graph.add(.undirected, from: e, to: h, weight: nil)
 graph.add(.undirected, from: e, to: f, weight: nil)
 graph.add(.undirected, from: f, to: g, weight: nil)
 
-print(graph)
+//print(graph)
 
 let vertices = graph.bfs(from: a)
 vertices.forEach { vertex in
-  print(vertex)
+    print(vertex)
 }
 
 //: [Next Challenge](@next)
